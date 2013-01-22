@@ -1,8 +1,10 @@
-WorldGenerationControl 2.6
+WorldGenerationControl 2.6a
 =================
 Formerly ForceGenChunks
 
 *Which is a dumb name so I changed it*
+
+**LIGHTING IS BROKEN IN 2.6a!**
 
 This is a very simple plugin to allow you to pre-generate a region of your world. It does not affect already generated
 regions. As of 2.0, it can also repair lighting of existing regions.
@@ -145,14 +147,19 @@ out when EOF is encountered in input, the proper way to do this would be somethi
 
 Download
 -----------------
-https://github.com/downloads/Nephyrin/WorldGenerationControl/WorldGenerationControl_v2.6.jar
+https://dl.dropbox.com/u/5853687/WorldGenerationControl/WorldGenerationControl_v2.6a.jar
+Looks like GitHub disabled the Downloads system, so try not to melt my Dropbox, all right?
 
 Source
 -----------------
-https://github.com/Nephyrin/WorldGenerationControl
+https://github.com/lx45803/WorldGenerationControl
 
 ChangeLog
 -----------------
+- 2.6a
+    - Updated to work with 1.4.7 builds (and probably everything since 1.2, but this is untested).
+    - Broke lighting. Generation will behave as if you hadn't requested it.
+    - New maintainer: AGS_Phoenix
 - 2.6
     - Updated to work with 1.0.1 / 1.1 builds.
 - 2.5

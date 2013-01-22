@@ -61,9 +61,11 @@ import org.bukkit.scheduler.BukkitScheduler;
 // Plugin *Does not* require craftbukkit, but lighting wont be available
 // otherwise as Bukkit doesn't currently provide the right calls.
 // (Our old method was a hack that relied on CraftBukkit quirks anyway)
-import org.bukkit.craftbukkit.CraftChunk;
+//import org.bukkit.craftbukkit.CraftChunk;
 // This is used by checkCWTickList to work around a CW bug
-import org.bukkit.craftbukkit.CraftWorld;
+//import org.bukkit.craftbukkit.CraftWorld;
+//This has been disabled since I don't really know where these are in 1.4.7.
+//Maybe we can light chunks by calling the MC code directly? Need to investigate more. -Phoenix
 
 public class WorldGenerationControl extends JavaPlugin implements Runnable
 {
@@ -89,12 +91,14 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
     }
     public enum GenerationLighting
     {
+        //Lighting is disabled due to weirdness with CB. -Phoenix
+        
         // Force recalculate lighting on all chunks
         // we pass over
-        EXTREME,
+        //EXTREME,
         // Update unprocessed lighting on chunks we
         // pass over
-        NORMAL,
+        //NORMAL,
         // Don't force lighting. Generated areas
         // will have invalid lighting until a
         // player wanders near them. This is only
@@ -108,7 +112,7 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
     {
         private ArrayDeque<QueuedRegion> queuedregions = new ArrayDeque<QueuedRegion>();
         private World world;
-        private GenerationLighting fixlighting = GenerationLighting.NORMAL;
+        private GenerationLighting fixlighting = GenerationLighting.NONE;
         private GenerationSpeed speed = GenerationSpeed.NORMAL;
         private int totalregions = 0;
         private int regionsize;
@@ -125,9 +129,10 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
         public GenerationRegion(World world)
         {
             this.world = world;
-            this.iscraftbukkit = this.world instanceof CraftWorld;
+            this.iscraftbukkit = false; //this.world instanceof CraftWorld; //Ties to line 135 below
             this.setSpeed(GenerationSpeed.NORMAL);
             
+            /*
             if (this.iscraftbukkit)
             {
                 // Find ticklist handle
@@ -167,6 +172,7 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
                     }
                 }
             }
+            */
         }
         public void setForceKeepup(boolean v) { this.forcekeepup = v; }
         public void setDebug(boolean v) { this.debug = v; }
@@ -226,7 +232,7 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
 
             if (this.forcekeepup)
             {
-                if (this.iscraftbukkit)
+                /*if (this.iscraftbukkit)
                 {
                     // See if this is CraftBukkit and we can fix the NextTickList leak
                     // otherwise it can mean lots of useless idle time while the server
@@ -260,7 +266,7 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
                         statusMsg("Warning: Unrecognized CraftBukkit build, cannot force saving. Async chunk loader will slow things down!");
                         this.iscraftbukkit = false;
                     }
-                }
+                }*/
                 // With default java options, a moderately loaded server
                 // will simply not invoke the GC until it really needs
                 // to, meaning we can just sit above our memory limits
@@ -396,6 +402,7 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
             //
             // Lighting
             //
+	    	/*
             if (this.fixlighting != GenerationLighting.NONE)
             {
                 iter = chunks.iterator();
@@ -418,6 +425,7 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
                     }
                 }
             }
+            */
 
             //
             // Cleanup Chunks
@@ -573,6 +581,7 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
         // Try to call the craftbukkit lighting update.
         // This will throw exceptions if: Server isn't craftbukkit, craftbukkit isn't the expected version, craftbukkit has an error...
         // *catch exceptions* if you don't want to assume we're running on compatible craftbukkit.
+        /*
         public void fixLighting(boolean force)
         {
             if (this.chunk == null) return;
@@ -602,7 +611,7 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
 		    }
                 }
             }
-        }
+        }*/
         
         public void load() { this.load(false); }
         public void load(boolean regenerateChunk)
@@ -930,6 +939,7 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
             else if (args.getSwitch("veryslow") != null)
                 speed = GenerationSpeed.VERYSLOW;
             
+            /*
             GenerationLighting lighting;
             String lightswitch = args.getSwitch("lighting");
             if (lightswitch == null)
@@ -951,8 +961,8 @@ public class WorldGenerationControl extends JavaPlugin implements Runnable
                     return true;
                 }
             }
-            else
-                lighting = GenerationLighting.NONE;
+            else*/
+                GenerationLighting lighting = GenerationLighting.NONE;
             
             GenerationRegion gen = new GenerationRegion(world);
             gen.setSpeed(speed);
