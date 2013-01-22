@@ -4,8 +4,6 @@ Formerly ForceGenChunks
 
 *Which is a dumb name so I changed it*
 
-**LIGHTING IS BROKEN IN 2.6a!**
-
 This is a very simple plugin to allow you to pre-generate a region of your world. It does not affect already generated
 regions. As of 2.0, it can also repair lighting of existing regions.
 
@@ -18,8 +16,8 @@ Features
 - Doesn't lock up the server (unless you use the /allAtOnce option)
 - Low ram usage, works fine on servers with 1gig of memory.
 - Generates trees & ore, not just land
-- Can generate valid lighting
-- Can force regenerate lighting on existing chunks, to fix light issues.
+- Can generate valid lighting (Broken in 2.6a. See **Notes on Lighting** below.)
+- Can force regenerate lighting on existing chunks, to fix light issues. (Broken in 2.6a. See **Notes on Lighting** below.)
 
 Bugs/Quirks
 -----------------
@@ -124,6 +122,9 @@ join. Useful if you want your server to use 100% on generating when it would oth
 Notes on Lighting
 -----------------
 
+**NOTE: Lighting is broken in 2.6a, and will silently ignore any requests for it.**  
+This is due to a dependency on parts of CraftBukkit that have changed heavily since Nephyrin last updated. This may be fixed soon.
+
 By default, minecraft only generates lighting info for a chunk when it is first approached by a player. This is fine,
 but if you want to generate an external map with something like Minecraft Overviewer, it means the areas players haven't
 visited will only have 'fast' lighting, with pitch black shadows.
@@ -147,8 +148,8 @@ out when EOF is encountered in input, the proper way to do this would be somethi
 
 Download
 -----------------
-https://dl.dropbox.com/u/5853687/WorldGenerationControl/WorldGenerationControl_v2.6a.jar
-Looks like GitHub disabled the Downloads system, so try not to melt my Dropbox, all right?
+https://dl.dropbox.com/u/5853687/WorldGenerationControl/WorldGenerationControl_v2.6a.jar  
+Looks like GitHub disabled the Downloads system Nephyrin was using, so try not to melt my Dropbox, all right?
 
 Source
 -----------------
