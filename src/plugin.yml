@@ -1,7 +1,8 @@
 name: WorldGenerationControl
 main: net.pointysoftware.worldgenerationcontrol.WorldGenerationControl
-version: 2.6
-author: john@pointysoftware.net
+version: 2.6b
+authors: [john@pointysoftware.net, lx45803@gmail.com] 
+description: Allows you to pre-generate a region of your world.
 
 permissions:
    worldgenerationcontrol.generate:

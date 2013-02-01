@@ -157,6 +157,9 @@ https://github.com/lx45803/WorldGenerationControl
 
 ChangeLog
 -----------------
+- 2.6b
+    - Fixed broken plugin.yml preventing the plugin from running on most servers.
+    - Version is now reported correctly on plugin load.
 - 2.6a
     - Updated to work with 1.4.7 builds (and probably everything since 1.2, but this is untested).
     - Broke lighting. Generation will behave as if you hadn't requested it.
