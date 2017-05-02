@@ -1,4 +1,4 @@
-WorldGenerationControl 2.6a
+WorldGenerationControl 2.6b
 =================
 Formerly ForceGenChunks
 
