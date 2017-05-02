@@ -148,8 +148,7 @@ out when EOF is encountered in input, the proper way to do this would be somethi
 
 Download
 -----------------
-https://dl.dropbox.com/u/5853687/WorldGenerationControl/WorldGenerationControl_v2.6a.jar  
-Looks like GitHub disabled the Downloads system Nephyrin was using, so try not to melt my Dropbox, all right?
+https://github.com/AGSPhoenix/WorldGenerationControl/releases
 
 Source
 -----------------
